@@ -104,7 +104,17 @@ class Recommender:
     def get_movies(self):
         r = []
         for pel in self.peliculas:
-            r.append({'title': pel['title'], 'poster': pel['poster']})
+            r.append(
+                {
+                    'title': pel['title'],
+                    'poster': pel['poster'],
+                    'director': pel['director'],
+                    'genres': ", ".join(pel['genres']),
+                    'year': pel['year'],
+                    'rating': pel['rating'],
+                    'url': pel['url']
+                }
+            )
         return r
 
     def film_quantity(self):

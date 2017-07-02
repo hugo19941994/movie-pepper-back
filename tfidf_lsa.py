@@ -68,7 +68,7 @@ def _load_list(json_list: List[dict]) -> List[str]:
     # Original synopsis
     corpus: List[str] = []
 
-    for item in json.load(open('./tutorial/quotes.json', 'r')):
+    for item in json.load(open('./movie_scrape/imdb.json', 'r')):
         if _check_exists('plot', item) and \
                 _check_english(item['plot']):
             revs = ''.join(item['reviews'])
@@ -76,6 +76,7 @@ def _load_list(json_list: List[dict]) -> List[str]:
             json_list.append(item)
 
     return corpus
+
 
 def repl(text):
     tokenizer = TabTokenizer()
@@ -121,6 +122,7 @@ def _represents_int(num_str: str) -> bool:
 
 
 def filt(text):
+    '''Remove stopwords from a string'''
     filtered_text = ""
     for word in text.split():
         # TODO Don't check if every word is an int
@@ -254,7 +256,10 @@ def _save_files(json_list: list) -> None:
         json.dump(t, out_file, indent=4, ensure_ascii=False)
 
 
-def calculate_corpus_var() -> None:
+def calculate_corpus_var(max_df: int = 200,
+                         min_df: int = 5,
+                         n_components: int = 1000,
+                         max_features: Any = None) -> None:
 
     '''
     tf-idf parameters:
@@ -263,11 +268,6 @@ def calculate_corpus_var() -> None:
         int -> more/less than int number of documents
         float -> more/less than the float percentage of documents
     '''
-
-    max_df = 200
-    min_df = 5
-    n_components = 1000
-    max_features: Any = None
 
     json_list: list = []
     corpus = _filter_text(json_list)
