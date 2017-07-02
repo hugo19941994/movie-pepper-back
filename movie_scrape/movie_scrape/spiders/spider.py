@@ -13,11 +13,13 @@ class Spider(scrapy.Spider):
         for movie_url in response.css('.lister-item-header a::attr(href)') \
                 .extract():
             yield scrapy.Request(response.urljoin(movie_url),
-                                 callback=self.parse_movie)
+                                 callback=self.parse_movie,
+                                 dont_filter=True)
 
         url = response.css('.next-page::attr(href)').extract_first()
         yield scrapy.Request(response.urljoin(url),
-                             callback=self.parse)
+                             callback=self.parse,
+                             dont_filter=True)
 
     def parse_movie(self, response):
         key_url = response.css('div[itemprop="keywords"] nobr a::attr(href)').extract_first()
