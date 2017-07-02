@@ -10,10 +10,12 @@ from flask_cors import CORS  # type: ignore
 from flask import Response
 from recommender import Recommender
 from decorator import decorator
+from doc2vec import doc2vec_model
 import json
 import brotli
 
 rec = Recommender()
+d2v = doc2vec_model()
 
 app = Flask(__name__)
 CORS(app)
@@ -56,6 +58,15 @@ def movies() -> Response:
 def recommend(title: str) -> Response:
     return Response(
         json.dumps(rec.recommend(title)),
+        mimetype='application/json'
+    )
+
+
+@app.route("/recommend-d2v/<string:title>")
+@brotlify
+def recommend_d2v(title: str) -> Response:
+    return Response(
+        json.dumps(d2v.recommendation(title, 10)),
         mimetype='application/json'
     )
 
