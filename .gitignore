@@ -2,6 +2,9 @@ db.json
 originals.json
 imdb.json
 crawls/
+.DS_Store
+.mypy_cache
+my_model.*
 
 # Created by https://www.gitignore.io/api/python
 
