@@ -12,7 +12,7 @@ class doc2vec_model:
             self.model = self.create_model()
         return
 
-    def create_model(self):
+    def create_model(self, size=1000, window=5, min_count=5, iter=20):
         with open('./db.json', 'r') as in_file:
             movies = json.load(in_file)
 
@@ -25,7 +25,8 @@ class doc2vec_model:
                                                in review_comb.split(" ")],
                                         tags=[movie['title']]))
 
-        self.model = Doc2Vec(docs, size=1000, window=8, min_count=5, workers=4, iter=10)
+        self.model = Doc2Vec(docs, size=size, window=window,
+                             min_count=min_count, workers=8, iter=iter)
 
         self.model.save("my_model.doc2vec")
 
@@ -38,12 +39,12 @@ class doc2vec_model:
                                                topn=topn)
 
     def main(self):
-        print(self.model.docvecs['The Godfather'])
-        print(self.model.similar_by_word('mafia'))
-        print(self.model.docvecs.most_similar(["The Godfather"],
-                                              topn=len(self.model.docvecs)))
-        print(self.model.docvecs.most_similar(["The Godfather: Part II"],
-                                              topn=100))
+        #print(self.model.docvecs['The Godfather'])
+        print(self.model.similar_by_word('airplane'))
+        print(self.model.similar_by_word('plant'))
+        print(self.model.similar_by_word('air'))
+        #print(self.model.docvecs.most_similar(["The Godfather"],
+                                              #topn=len(self.model.docvecs)))
 
 
 if __name__ == "__main__":
