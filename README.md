@@ -1,5 +1,6 @@
 # Movie Pepper Backend
 
+[![license](https://img.shields.io/github/license/hugo19941994/movie-pepper-front.svg)](https://github.com/hugo19941994/ViajeFacil/blob/master/LICENSE)
 [![Requirements Status](https://requires.io/github/hugo19941994/movie-pepper-back/requirements.svg?branch=master)](https://requires.io/github/hugo19941994/movie-pepper-back/requirements/?branch=master)
 
 This repo contains all the backend code for the Movie Pepper open source recommendation engine.
