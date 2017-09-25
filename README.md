@@ -1,5 +1,7 @@
 # Movie Pepper Backend
 
+[![Requirements Status](https://requires.io/github/hugo19941994/movie-pepper-back/requirements.svg?branch=master)](https://requires.io/github/hugo19941994/movie-pepper-back/requirements/?branch=master)
+
 This repo contains all the backend code for the Movie Pepper open source recommendation engine.
 
 This includes the REST API and the [IMDb](www.imdb.com) crawler.
