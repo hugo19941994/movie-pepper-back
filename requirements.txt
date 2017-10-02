@@ -35,7 +35,7 @@ olefile==0.44
 packaging==16.8
 parsel==1.2.0
 parso==0.1.0
-Pillow==4.2.1
+Pillow==4.3.0
 pipdate==0.2.1
 pipdated==0.1.8
 pyasn1==0.3.6
