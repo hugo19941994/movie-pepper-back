@@ -28,7 +28,7 @@ lxml==4.0.0
 MarkupSafe==1.0
 matplotlib==2.0.2
 matplotlib2tikz==0.6.13
-mypy==0.521
+mypy==0.530
 nltk==3.2.5
 numpy==1.13.3
 olefile==0.44
