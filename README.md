@@ -25,6 +25,23 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
+## Crawler
+
+A Bash script is provided to simplify executing the Spidy crawler.
+
+```bash
+cd movie_scrape
+START_URL="http://www.imdb.com/search/title?groups=top_1000&sort=user_rating,desc&page=1&ref" ./scrap.sh
+```
+
+After the crawl is complete calculate the TF-IDF values.
+
+```bash
+python tfidf_lsa.py
+```
+
+This step is needed to execute the server.
+
 ## Server
 
 Start the server
@@ -34,12 +51,3 @@ python server.py
 ```
 
 You will probably want to use a reverse proxy such as NGINX and secure it with HTTPS.
-
-## Crawler
-
-A Bash script is provided to simplify executing the Spidy crawler.
-
-```bash
-./movie_scrape/scrap.sh
-```
-
