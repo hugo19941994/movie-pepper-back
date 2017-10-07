@@ -10,8 +10,8 @@ matplotlib2tikz==0.6.13
 matplotlib==2.1.0rc1
 nltk==3.2.5
 numpy==1.13.3
-scikit_learn==0.18.1
 scipy==1.0.0rc1
 scrapy==1.4.0
+scikit-learn==0.19.0
 textblob==0.13.0
 typing==3.6.2
