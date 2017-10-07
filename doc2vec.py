@@ -34,7 +34,7 @@ class doc2vec_model:
 
     def recommendation(self, movie_title, topn=None):
         if topn is None:
-            topn = len(self.mode.docvecs)
+            topn = len(self.model.docvecs)
         return self.model.docvecs.most_similar([movie_title],
                                                topn=topn)
 
