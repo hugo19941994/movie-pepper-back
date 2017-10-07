@@ -39,10 +39,11 @@ class doc2vec_model:
                                                topn=topn)
 
     def main(self):
+        pass
         #print(self.model.docvecs['The Godfather'])
-        print(self.model.similar_by_word('airplane'))
-        print(self.model.similar_by_word('plant'))
-        print(self.model.similar_by_word('air'))
+        #print(self.model.similar_by_word('airplane'))
+        #print(self.model.similar_by_word('plant'))
+        #print(self.model.similar_by_word('air'))
         #print(self.model.docvecs.most_similar(["The Godfather"],
                                               #topn=len(self.model.docvecs)))
 
