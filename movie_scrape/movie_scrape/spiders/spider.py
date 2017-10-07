@@ -1,15 +1,20 @@
 import scrapy
+import os
+from scrapy.http import Request
 from .. import items
 
 
 class Spider(scrapy.Spider):
     name = 'spider'
-    start_urls = [
-        'http://www.imdb.com/search/title?groups=top_1000&sort=user_rating,'
-        'desc&page=1&ref'
-    ]
+    allowed_domains = ["imdb.com"]
+    start_urls = [os.environ["START_URL"]]
+
+    def start_requests(self):
+        for url in self.start_urls:
+            yield Request(url, dont_filter=False)
 
     def parse(self, response):
+        print("URL: " + response.url)
         for movie_url in response.css('.lister-item-header a::attr(href)') \
                 .extract():
             yield scrapy.Request(response.urljoin(movie_url),
@@ -58,7 +63,7 @@ class Spider(scrapy.Spider):
 
     def extract_plot(self, response):
         item = response.meta['item']
-        item['plot'] = ''.join(response.xpath('//*[@id="swiki.2.1"]/text()').extract())
+        item['plot'] = ''.join(response.xpath('//*[@id="plot-synopsis-content"]/li/text()').extract())
 
         request3 = scrapy.Request(response.meta['reviews_url'],
                                   callback=self.extract_reviews,
@@ -75,11 +80,14 @@ class Spider(scrapy.Spider):
         for url in response.xpath('//*[@id="tn15content"]/table[1]/tr/td[2]//a/@href').extract()[:3]:
             urls.append(url)
 
-        request4 = scrapy.Request(response.urljoin(urls.pop()),
-                                  callback=self.extract_reviews_page,
-                                  meta={'item': item, 'urls': urls},
-                                  priority=4)
-        yield request4
+        try:
+            request4 = scrapy.Request(response.urljoin(urls.pop()),
+                                      callback=self.extract_reviews_page,
+                                      meta={'item': item, 'urls': urls},
+                                      priority=4)
+            yield request4
+        except:
+            yield item
 
     def extract_reviews_page(self, response):
         item = response.meta['item']

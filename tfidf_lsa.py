@@ -68,12 +68,13 @@ def _load_list(json_list: List[dict]) -> List[str]:
     # Original synopsis
     corpus: List[str] = []
 
-    for item in json.load(open('./movie_scrape/imdb.json', 'r')):
-        if _check_exists('plot', item) and \
-                _check_english(item['plot']):
-            revs = ''.join(item['reviews'])
-            corpus.append(item['plot'] + revs)
-            json_list.append(item)
+    with open('./movie_scrape/imdb.json', 'r') as in_file:
+        for item in json.load(in_file):
+            if _check_exists('plot', item) and \
+                    _check_english(item['plot']):
+                revs = ''.join(item['reviews'])
+                corpus.append(item['plot'] + revs)
+                json_list.append(item)
 
     return corpus
 

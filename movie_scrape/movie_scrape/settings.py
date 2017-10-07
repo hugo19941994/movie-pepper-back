@@ -14,6 +14,8 @@ BOT_NAME = 'movie_scrape'
 SPIDER_MODULES = ['movie_scrape.spiders']
 NEWSPIDER_MODULE = 'movie_scrape.spiders'
 
+DEPTH_LIMIT=10
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'movie_scrape (+http://www.yourdomain.com)'
