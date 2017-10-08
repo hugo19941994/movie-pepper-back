@@ -1,4 +1,4 @@
-from tfidf_lsa import calculate_corpus_var
+from tfidf_lsa import calculate_corpus_var, _check_english
 from doc2vec import doc2vec_model
 import brotli
 import json
@@ -81,6 +81,12 @@ class TestMoviePepper(unittest.TestCase):
             json.loads(movs)
         except:
             self.fail()
+
+    def test_env(self):
+        self.assertEqual(_check_english("Hello my name is Hugo"), True)
+        self.assertEqual(_check_english("Hola mi nombre es Hugo"), False)
+        self.assertEqual(_check_english("ugobsdo47h ogy ro83g 34or8g r838f4qf9gyg7fwer"), False)
+        self.assertEqual(_check_english(42.0), False)
 
     @classmethod
     def tearDownClass(cls):

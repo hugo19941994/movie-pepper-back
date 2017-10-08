@@ -6,5 +6,6 @@ install:
   - python -m textblob.download_corpora
   - python -m nltk.downloader stopwords
 script:
-  - coverage run --source=. tests.py
+  - coverage run --concurrency=multiprocessing tests.py
+  - coverage combine
   - coveralls
