@@ -1,5 +1,5 @@
 from gensim import models
-from gensim.models.doc2vec import Doc2Vec, LabeledSentence
+from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import pathlib
 import json
 
@@ -21,7 +21,7 @@ class doc2vec_model:
             review_comb = ""
             for review in movie['reviews']:
                 review_comb += review
-            docs.append(LabeledSentence(words=[x.lower() for x
+            docs.append(TaggedDocument(words=[x.lower() for x
                                                in review_comb.split(" ")],
                                         tags=[movie['title']]))
 
