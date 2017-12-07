@@ -42,7 +42,7 @@ class Spider(scrapy.Spider):
         item['poster'] = poster
 
         plot_url = response.urljoin(response.xpath('//*[@id="titleStoryLine"]/span[2]/a[2]/@href').extract_first())
-        reviews_url = response.urljoin(response.xpath('//*[@id="titleUserReviewsTeaser"]/div/div[3]/a[2]/@href').extract_first())
+        reviews_url = response.urljoin(response.xpath('//*[@id="titleUserReviewsTeaser"]/div/a[2]/@href').extract_first())
         request = scrapy.Request(response.urljoin(key_url),
                                  callback=self.extract_keywords,
                                  meta={'item': item,
