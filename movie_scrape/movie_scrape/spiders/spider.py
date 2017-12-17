@@ -75,32 +75,14 @@ class Spider(scrapy.Spider):
         item = response.meta['item']
         item['reviews'] = []
 
-        # 3 pages -> 30 reviews
-        urls = []
-        for url in response.xpath('//*[@id="tn15content"]/table[1]/tr/td[2]//a/@href').extract()[:3]:
-            urls.append(url)
+        # By default 9 reviews are loaded. To load more JS must be loaded
+        # and .ipl-load-more__button must be pressed
+        # TODO: use js to press buton
 
+        urls = []
         try:
-            request4 = scrapy.Request(response.urljoin(urls.pop()),
-                                      callback=self.extract_reviews_page,
-                                      meta={'item': item, 'urls': urls},
-                                      priority=4)
-            yield request4
+            item['reviews'] = response.css('.text::text').extract()
+            yield item
+
         except:
             yield item
-
-    def extract_reviews_page(self, response):
-        item = response.meta['item']
-
-        for review in response.xpath('//*[@id="tn15content"]//p'):
-            item['reviews'].append(''.join(review.xpath('./text()').extract()))
-
-        if len(response.meta['urls']) == 0:
-            yield item
-        else:
-            request4 = scrapy.Request(response.urljoin(response.meta['urls'].pop()),
-                                    callback=self.extract_reviews_page,
-                                    meta={'item': item, 'urls': response.meta['urls']},
-                                    priority=4)
-            yield request4
-
