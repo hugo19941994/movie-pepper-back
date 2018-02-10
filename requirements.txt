@@ -1,5 +1,5 @@
 brotli==1.0.1
-coverage==4.5
+coverage==4.5.1
 coveralls==1.2.0
 decorator==4.2.1
 Flask==0.12.2
