@@ -1,6 +1,5 @@
 # Movie Pepper Backend
 
-[![Requirements Status](https://requires.io/github/hugo19941994/movie-pepper-back/requirements.svg?branch=master)](https://requires.io/github/hugo19941994/movie-pepper-back/requirements/?branch=master)
 [![Build Status](https://travis-ci.org/hugo19941994/movie-pepper-back.svg?branch=master)](https://travis-ci.org/hugo19941994/movie-pepper-back)
 [![Coverage Status](https://coveralls.io/repos/github/hugo19941994/movie-pepper-back/badge.svg?branch=master)](https://coveralls.io/github/hugo19941994/movie-pepper-back?branch=master)
 
