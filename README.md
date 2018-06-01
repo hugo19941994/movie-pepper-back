@@ -1,6 +1,6 @@
 # Movie Pepper Backend
 
-[![Build Status](https://travis-ci.org/hugo19941994/movie-pepper-back.svg?branch=master)](https://travis-ci.org/hugo19941994/movie-pepper-back)
+[![Build Status](https://travis-ci.com/hugo19941994/movie-pepper-back.svg?branch=master)](https://travis-ci.com/hugo19941994/movie-pepper-back)
 [![Coverage Status](https://coveralls.io/repos/github/hugo19941994/movie-pepper-back/badge.svg?branch=master)](https://coveralls.io/github/hugo19941994/movie-pepper-back?branch=master)
 
 This repo contains all the backend code for the Movie Pepper open source recommendation engine.
