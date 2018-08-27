@@ -14,4 +14,4 @@ scipy==1.1.0
 scrapy==1.5.1
 scikit-learn==0.19.2
 textblob==0.15.1
-typing==3.6.4
+typing==3.6.6
