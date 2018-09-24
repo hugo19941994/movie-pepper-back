@@ -9,7 +9,7 @@ langdetect==1.0.7
 matplotlib2tikz==0.6.18
 matplotlib==3.0.0
 nltk==3.2.5
-numpy==1.15.1
+numpy==1.15.2
 scipy==1.1.0
 scrapy==1.5.1
 scikit-learn==0.19.2
