@@ -1,10 +1,14 @@
 language: python
+dist: xenial
+sudo: yes
 python:
-- '3.6'
+- '3.7'
 install:
+- sudo rm -f /etc/boto.cfg # workaround
 - pip install -r requirements.txt
 - python -m textblob.download_corpora
 - python -m nltk.downloader stopwords
+- pip install git+https://github.com/scrapy/scrapy@master --no-dependencies --upgrade # workaround
 script:
 - coverage run --concurrency=multiprocessing tests.py
 - coverage combine
