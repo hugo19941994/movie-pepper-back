@@ -4,7 +4,7 @@ coveralls==1.5.1
 decorator==4.3.0
 Flask==1.0.2
 flask-cors==3.0.7
-gensim==3.6.0
+gensim==3.7.0
 langdetect==1.0.7
 matplotlib2tikz==0.6.18
 matplotlib==3.0.2
