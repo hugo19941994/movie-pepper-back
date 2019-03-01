@@ -7,7 +7,7 @@ flask-cors==3.0.7
 gensim==3.7.1
 langdetect==1.0.7
 matplotlib2tikz==0.6.18
-matplotlib==3.0.2
+matplotlib==3.0.3
 nltk==3.2.5
 numpy==1.16.2
 scipy==1.2.1
