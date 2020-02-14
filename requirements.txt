@@ -1,6 +1,6 @@
 brotli==1.0.7
 coverage==4.5.4
-coveralls==1.8.2
+coveralls==1.11.0
 decorator==4.4.0
 Flask==1.1.1
 flask-cors==3.0.8
