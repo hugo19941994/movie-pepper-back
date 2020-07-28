@@ -36,9 +36,9 @@ class Spider(scrapy.Spider):
         item['genres'] = list(map(str.lstrip, response.css('div[itemprop="genre"] a::text').extract()))
         item['year'] = response.css('#titleYear a::text').extract_first()
         item['director'] = response.css('span[itemprop="director"] a span::text').extract_first()
-        poster = response.xpath('//*[@id="title-overview-widget"]/div[2]/div[3]/div[1]/a/img/@src').extract_first()
+        poster = response.xpath('//*[@id="title-overview-widget"]/div[1]/div[3]/div[1]/a/img/@src').extract_first()
         if poster is None:
-            poster = response.xpath('//*[@id="title-overview-widget"]/div[3]/div[1]/a/img/@src').extract_first()
+            poster = response.xpath('//*[@id="title-overview-widget"]/div[2]/div[1]/a/img/@src').extract_first()
         item['poster'] = poster
 
         plot_url = response.urljoin(response.xpath('//*[@id="titleStoryLine"]/span[2]/a[2]/@href').extract_first())
