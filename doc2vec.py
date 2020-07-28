@@ -25,8 +25,8 @@ class doc2vec_model:
                                                in review_comb.split(" ")],
                                         tags=[movie['title']]))
 
-        self.model = Doc2Vec(docs, size=size, window=window,
-                             min_count=min_count, workers=8, iter=iter)
+        self.model = Doc2Vec(docs, vector_size=size, window=window,
+                             min_count=min_count, workers=8, epochs=iter)
 
         self.model.save("my_model.doc2vec")
 
