@@ -23,6 +23,8 @@ Install dependencies
 
 ```bash
 pip install -r requirements.txt
+python -m textblob.download_corpora
+python -m nltk.downloader stopwords
 ```
 
 ## Crawler
