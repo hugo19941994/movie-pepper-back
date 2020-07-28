@@ -83,6 +83,7 @@ def repl(text):
     tokenizer = TabTokenizer()
     mod_text = ""
     for sentence in text.split("."):
+        sentence = sentence.strip()
         blob = TextBlob(sentence, tokenizer=tokenizer)
         tags = blob.pos_tags
         for j in tags:
