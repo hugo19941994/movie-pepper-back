@@ -1,21 +1,21 @@
 #!/usr/bin/env python
 
-'''
+"""
 server.py
 Flask server for recommender.py API
-'''
+"""
 
 from flask import Flask  # type: ignore
 from flask_cors import CORS  # type: ignore
 from flask import Response
 from recommender import Recommender
 from decorator import decorator
-from doc2vec import doc2vec_model
+from doc2vec import Doc2VecModel
 import json
 import brotli
 
 rec = Recommender()
-d2v = doc2vec_model()
+d2v = Doc2VecModel()
 
 app = Flask(__name__)
 CORS(app)

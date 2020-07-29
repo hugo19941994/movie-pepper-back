@@ -1,11 +1,12 @@
 from tfidf_lsa import calculate_corpus_var, _check_english
-from doc2vec import doc2vec_model
+from doc2vec import Doc2VecModel
 import brotli
 import json
 import os
 import shutil
 import subprocess
 import unittest
+
 
 class TestMoviePepper(unittest.TestCase):
     @classmethod
@@ -25,24 +26,24 @@ class TestMoviePepper(unittest.TestCase):
         subprocess.run(['START_URL="http://www.imdb.com/search/title?role=nm0000095&title_type=feature&user_rating=8.0,10" ./scrap.sh'], cwd="./movie_scrape/", shell=True)
 
         # Create TF-IDF and LSA model
-        calculate_corpus_var(max_df=200, min_df=2, n_components=10, max_features=None)
+        calculate_corpus_var(max_df=200, min_df=1, n_components=10, max_features=None)
 
         # Create Doc2Vec model
-        d2v = doc2vec_model()
+        d2v = Doc2VecModel()
         d2v.main()
 
     def test_crawl(self):
         try:
             with open('./movie_scrape/imdb.json', 'r') as in_file:
                 json.load(in_file)
-        except:
+        except Exception:
             self.fail()
 
     def test_tfidf_lsa(self):
         try:
             with open('./db.json', 'r') as in_file:
                 json.load(in_file)
-        except:
+        except Exception:
             self.fail()
 
     def test_create_d2v(self):
@@ -57,7 +58,7 @@ class TestMoviePepper(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         try:
             json.loads(movs)
-        except:
+        except Exception:
             self.fail()
 
     def test_server_recommend(self):
@@ -68,7 +69,7 @@ class TestMoviePepper(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         try:
             json.loads(movs)
-        except:
+        except Exception:
             self.fail()
 
     def test_server_d2vrecommend(self):
@@ -79,7 +80,7 @@ class TestMoviePepper(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         try:
             json.loads(movs)
-        except:
+        except Exception:
             self.fail()
 
     def test_env(self):
@@ -100,6 +101,7 @@ class TestMoviePepper(unittest.TestCase):
             pass
         except OSError:
             pass
+
 
 if __name__ == '__main__':
     unittest.main()

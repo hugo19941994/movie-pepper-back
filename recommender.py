@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-'''
+"""
 Sisrec.py
 Movies recomendation engine
-'''
+"""
 
 from typing import List  # noqa: F401
 from scipy.spatial.distance import cosine
@@ -20,7 +20,7 @@ DEFAULT_RATIO = {'director': 1,
 
 
 def union(list_a: list, list_b: list) -> list:
-    '''Return the union of two lists'''
+    """Return the union of two lists"""
     if list_a is None:
         list_a = [None]
     if list_b is None:
@@ -29,7 +29,7 @@ def union(list_a: list, list_b: list) -> list:
 
 
 def ordenar(comparacion: dict, length: int = 10) -> dict:
-    '''Sort the results'''
+    """Sort the results"""
 
     # Save 10 films ordered by similarity
     orden_similitud = sorted(comparacion['pels'],
@@ -41,8 +41,11 @@ def ordenar(comparacion: dict, length: int = 10) -> dict:
     return comparacion
 
 
-def compare(mov: dict, pel: dict, ratio: dict = DEFAULT_RATIO) -> float:
-    '''Compute similarity between two movies'''
+def compare(mov: dict, pel: dict, ratio: dict = None) -> float:
+    """Compute similarity between two movies"""
+
+    if ratio is None:
+        ratio = DEFAULT_RATIO
 
     similitudtotal = 0.0
 
@@ -149,7 +152,7 @@ class Recommender:
         return ([x['pel'] for x in r['pels']])
 
     def ask_movie(self, peliculas: list) -> dict:
-        '''Select a movie'''
+        """Select a movie"""
 
         print("Select a movie")
         print("Press 0 for the complete list")
@@ -170,8 +173,9 @@ class Recommender:
                     if pel['title'].replace(u'\u00a0', '') == letter:
                         return pel
 
-    def clean(self, item: list) -> list:
-        '''Each row is a string. Lists must be separated and stripped'''
+    @staticmethod
+    def clean(item: list) -> list:
+        """Each row is a string. Lists must be separated and stripped"""
         item = [x.replace("'", "")
                 .replace('"', '')
                 .replace('[', '')
@@ -180,8 +184,9 @@ class Recommender:
 
         return item
 
-    def load(self) -> list:
-        '''Load every synopsis in a list'''
+    @staticmethod
+    def load() -> list:
+        """Load every synopsis in a list"""
         peliculas: list = []
 
         with open('./db.json', 'r') as in_file:
@@ -194,7 +199,7 @@ class Recommender:
         return peliculas
 
     def main_loop(self, peliculas: list) -> dict:
-        '''Main loop'''
+        """Main loop"""
 
         mov: dict = self.ask_movie(peliculas)
         print(mov['title'])
@@ -208,7 +213,8 @@ class Recommender:
         comp = {'mov': mov, 'pels': comparacion}
         return comp
 
-    def get_best_keyword(self, key: str, originals: dict) -> str:
+    @staticmethod
+    def get_best_keyword(key: str, originals: dict) -> str:
         word = ''
         best = 0
 
@@ -226,7 +232,7 @@ class Recommender:
         return word
 
     def main(self) -> None:
-        '''Main'''
+        """Main"""
 
         while True:
             comparacion: dict = self.main_loop(self.peliculas)
