@@ -5,7 +5,7 @@ RUN pip install pipenv
 WORKDIR /app
 COPY Pipfile* /app/
 
-RUN pipenv install --system
+RUN pipenv install --ignore-pipfile --deploy --system
 
 COPY . /app/
 
@@ -21,5 +21,5 @@ RUN python tfidf_lsa.py
 RUN python doc2vec.py
 
 # 3 Serve server
-CMD python server.py
+CMD gunicorn --bind 0.0.0.0:5000 server:app
 

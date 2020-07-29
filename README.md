@@ -50,7 +50,13 @@ This step is needed to execute the server.
 Start the server
 
 ```bash
-python server.py
+gunicorn --bind 0.0.0.0:5000 server:app
 ```
 
 You will probably want to use a reverse proxy such as NGINX and secure it with HTTPS.
+
+For developemnt you can use
+
+```python
+python server.py
+```
