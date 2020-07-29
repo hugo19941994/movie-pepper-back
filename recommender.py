@@ -53,7 +53,7 @@ def compare(mov: dict, pel: dict, ratio: dict = DEFAULT_RATIO) -> float:
         for campo_a, campo_b in [
                 (x, y) for x, y
                 in zip(mov.items(), pel.items()) if x[0]
-                in ratio and x[0] is not 'lsa'
+                in ratio and x[0] != 'lsa'
         ]:
             total = len(union(campo_a[1], campo_b[1]))
             if total > 0:
