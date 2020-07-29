@@ -5,7 +5,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib2tikz import save as tikz_save
 from recommender import Recommender
 from itertools import product
-from doc2vec import doc2vec_model
+from doc2vec import Doc2VecModel
 
 
 class defaultlist(list):
@@ -59,7 +59,7 @@ def calculate(movie):
     for size, window, min_count, ite in d2v_variations:
         i += 1
         # Train a new model
-        d2v = doc2vec_model()
+        d2v = Doc2VecModel()
         d2v.create_model(size, window, min_count, ite)
         rec = Recommender()
         film_quantity = rec.film_quantity()

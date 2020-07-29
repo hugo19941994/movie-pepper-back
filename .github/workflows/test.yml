@@ -6,10 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.8.x]
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,25 +13,27 @@ jobs:
     - name: Use Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        node-version: ${{ matrix.python-version }}
+        python-version: '3.8.x'
 
     - name: Install pipenv
-      run: sudo pip install pipenv
+      uses: dschep/install-pipenv-action@v1
 
-    - name: Install dependencies using Pipenv
-      run: pipenv install --deploy --system
+    - name: Install dependencies
+      run: |
+          pipenv install --dev
 
     - name: Download deps
       run: |
-          python -m textblob.download_corpora
-          python -m nltk.downloader stopwords
+          pipenv run python -m textblob.download_corpora
+          pipenv run python -m nltk.downloader stopwords
 
     - name: Test moviepepper-backend
       run: |
-          coverage run --concurrency=multiprocessing tests.py
-          coverage combine
-          coveralls
+          pipenv run coverage run --concurrency=multiprocessing tests.py
+          pipenv run coverage combine
+          pipenv run coveralls
       env:
         CI: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 

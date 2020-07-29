@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build and push Frotnend image
+    - name: Build and push Backend image
       uses: docker/build-push-action@v1
       with:
         username: hugo19941994

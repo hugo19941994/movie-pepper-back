@@ -4,7 +4,7 @@ import pathlib
 import json
 
 
-class doc2vec_model:
+class Doc2VecModel:
     def __init__(self):
         if pathlib.Path('./my_model.doc2vec').is_file():
             self.model = models.Doc2Vec.load('my_model.doc2vec')
@@ -49,5 +49,5 @@ class doc2vec_model:
 
 
 if __name__ == "__main__":
-    d2v = doc2vec_model()
+    d2v = Doc2VecModel()
     d2v.main()

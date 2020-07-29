@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Calculate tf-idf and lsa vectors for each movie
 Extract keywords
 Save the results to the corresponding JSON for offline processing
-'''
+"""
 
 import json
 import string
@@ -64,7 +64,7 @@ def _check_english(text: str) -> bool:
 
 
 def _load_list(json_list: List[dict]) -> List[str]:
-    '''Load the names of the movies and the corpus'''
+    """Load the names of the movies and the corpus"""
     # Original synopsis
     corpus: List[str] = []
 
@@ -101,10 +101,10 @@ def repl(text):
 
 # TODO: Comprobar arbol synset
 def _replace_with_hypernym(corpus: list) -> list:
-    '''
+    """
     Replace nouns with the hypernym of the most appropriate synset
     using lesk. Delete any proper nouns such as names
-    '''
+    """
 
     corpus_0 = []
     with ProcessPoolExecutor() as executor:
@@ -115,7 +115,7 @@ def _replace_with_hypernym(corpus: list) -> list:
 
 
 def _represents_int(num_str: str) -> bool:
-    '''Check if a string is a number'''
+    """Check if a string is a number"""
     try:
         int(num_str)
         return True
@@ -124,7 +124,7 @@ def _represents_int(num_str: str) -> bool:
 
 
 def filt(text):
-    '''Remove stopwords from a string'''
+    """Remove stopwords from a string"""
     filtered_text = ""
     for word in text.split():
         # TODO Don't check if every word is an int
@@ -135,7 +135,7 @@ def filt(text):
 
 
 def _filter_stopwords(corpus_0: list) -> list:
-    '''Delete any english stopwords'''
+    """Delete any english stopwords"""
 
     corpus_1 = []  # Synopsis without stopwords
     with ProcessPoolExecutor() as executor:
@@ -143,6 +143,7 @@ def _filter_stopwords(corpus_0: list) -> list:
             corpus_1.append(filtered_text)
 
     return corpus_1
+
 
 def stemm(text):
     stemmer = SnowballStemmer("english")
@@ -163,8 +164,9 @@ def stemm(text):
 
     return stemmed_text
 
+
 def _stemm_synopsis(corpus_1: list, originals: dict) -> list:
-    '''Stemm all possible words'''
+    """Stemm all possible words"""
 
     corpus_2 = []
 
@@ -176,7 +178,7 @@ def _stemm_synopsis(corpus_1: list, originals: dict) -> list:
 
 
 def _filter_text(json_list: list) -> list:
-    '''Text treatment'''
+    """Text treatment"""
     print("Filtering Text")
 
     corpus = _load_list(json_list)
@@ -199,17 +201,16 @@ def _filter_text(json_list: list) -> list:
 
 
 def _movie_distance(lsa_matrix: dict, json_list: list) -> None:
-    '''Calculate cosine similairty'''
+    """Calculate cosine similairty"""
     print("Calulating LSA")
 
     for i, _ in enumerate(lsa_matrix):
         json_list[i]['lsa'] = lsa_matrix[i].tolist()
 
 
-def _get_keywords(json_list: list,
-                  tfidf_x: dict,
+def _get_keywords(json_list: list, tfidf_x: dict,
                   vectorizer: TfidfVectorizer) -> None:
-    '''Calculate tf-idf vector and extract keywords'''
+    """Calculate tf-idf vector and extract keywords"""
     print("Calculating TFIDF and extracting keywords")
 
     for i, item in enumerate(json_list):
@@ -228,7 +229,7 @@ def _get_keywords(json_list: list,
 
 
 def _save_files(json_list: list) -> None:
-    '''Dump JSONs to files'''
+    """Dump JSONs to files"""
     t = []
     for item in json_list:
         '''
@@ -263,13 +264,13 @@ def calculate_corpus_var(max_df: int = 200,
                          n_components: int = 1000,
                          max_features: Any = None) -> None:
 
-    '''
+    """
     tf-idf parameters:
         max_df - Remove items that appear too frequently
         min_df - Remove items that are too specific
         int -> more/less than int number of documents
         float -> more/less than the float percentage of documents
-    '''
+    """
 
     json_list: list = []
     corpus = _filter_text(json_list)
