@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 coverage = "==5.2.1"
 coveralls = "==2.1.1"
-matplotlib = "==3.3.0"
+matplotlib = "==3.3.1"
 matplotlib2tikz = "==0.7.6"
 numpy = "==1.19.1"
 
