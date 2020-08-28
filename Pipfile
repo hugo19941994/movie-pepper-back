@@ -11,7 +11,7 @@ matplotlib2tikz = "==0.7.6"
 numpy = "==1.19.1"
 
 [packages]
-Brotli = "==1.0.7"
+Brotli = "==1.0.9"
 Flask = "==1.1.2"
 Flask-Cors = "==3.0.8"
 Scrapy = "==2.3.0"
