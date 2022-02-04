@@ -8,7 +8,7 @@ coverage = "==5.3"
 coveralls = "==2.1.2"
 matplotlib = "==3.3.2"
 matplotlib2tikz = "==0.7.6"
-numpy = "==1.19.4"
+numpy = "==1.22.2"
 
 [packages]
 Brotli = "==1.0.9"
